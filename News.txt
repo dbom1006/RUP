@@ -1,3 +1,25 @@
-﻿Test push trên master
-- Test push trên Dev
-- Bây giờ là DEV tiếp
+﻿RSR - đặc tả yêu cầu đề tài
+
+1. lịch sử
+2. tài liệu tham khảo, tài liệu tham chiếu
+3. những người liên quan
+4. danh sách chú giải, thuật ngữ
+5. giới thiệu
+	5.1. mục đích
+	5.2. phạm vi phần mềm
+	5.3. giả thiết
+6. tổng quan
+	6.1. actor - người dùng
+	6.2. biểu đồ use case hệ thống (# biz use case) -> các chức năng cài đặt trong hệ thống
+	6.3. web -> site map -> luồng thông tin trong website
+		dùng biểu đồ trạng thái
+7. các đặc tả chức năng của hệ thống
+	- demo giao diện
+	- đặc tả use case (dựa vào giao diện)
+8. yêu cầu	
+	yêu cầu hiệu năng
+	yêu cầu hệ thống
+	yêu cầu độ tin cậy
+	khả năng mở rộng
+	các giả thiết khác
+	
