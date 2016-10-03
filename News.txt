@@ -1,4 +1,10 @@
-﻿RSR - đặc tả yêu cầu đề tài
+﻿03/10/2016
+3. Mỗi SV tạo sequence diagram (version 1.0) cho các chức năng (màn hình) mình phụ trách.
+Mỗi màn hình phải tạo 1 file SequenceDiagram riêng.
+--> Đm ri bơ cả chục file à? :)
+
+----------------------------------------------------------------
+RSR - đặc tả yêu cầu đề tài
 
 1. lịch sử
 2. tài liệu tham khảo, tài liệu tham chiếu
@@ -22,4 +28,3 @@
 	yêu cầu độ tin cậy
 	khả năng mở rộng
 	các giả thiết khác
-	
