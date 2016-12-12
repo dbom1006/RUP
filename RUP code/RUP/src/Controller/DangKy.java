@@ -37,10 +37,18 @@ public class DangKy extends HttpServlet {
 		
 		try {
 			KhachhangBO kh = new KhachhangBO();
-			if(kh.insert(username, email, password)){
-				response.sendRedirect("dangnhap.jsp?id=2");
+			
+			if(kh.kiemtrakhachhang(email, username)){
+				response.sendRedirect("dangky.jsp?id=1");		
 			}
-			else response.sendRedirect("dangky.jsp");	
+			else{
+				
+				if(kh.insert(username, email, password)){
+					response.sendRedirect("dangnhap.jsp?id=2");
+				}
+			}
+
+				
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

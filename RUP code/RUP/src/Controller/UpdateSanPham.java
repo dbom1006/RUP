@@ -9,27 +9,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import Model.BO.KhachhangBO;
 import Model.BO.SanphamBO;
-import Model.Bean.ChitietBean;
-import Model.Bean.CuocdaugiaBean;
-import Model.Bean.MaxBean;
 import Model.Bean.QuanlyBean;
-import Model.Bean.XemphienBean;
 
 /**
- * Servlet implementation class QuanLy
+ * Servlet implementation class UpdateSanPham
  */
-@WebServlet("/QuanLy")
-public class QuanLy extends HttpServlet {
+@WebServlet("/UpdateSanPham")
+public class UpdateSanPham extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuanLy() {
+    public UpdateSanPham() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,28 +33,27 @@ public class QuanLy extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
-		String user =  request.getParameter("user");
+		String id =  request.getParameter("id");
+		String tensanpham =  request.getParameter("tensanpham");
+		String tag =  request.getParameter("tag");
+		String anh =  request.getParameter("hinhanh");
+		String mota =  request.getParameter("mota");
+		
+		
 		try{
 			
-			KhachhangBO sp = new KhachhangBO();
+			SanphamBO sp = new SanphamBO();
+			if(sp.updatesanpham(id, tensanpham, mota, anh, tag)){
+				response.sendRedirect("SuaSanPham?id="+id.trim()+"&error=0");
+			}
 			
-			String id = sp.getidkhachhang(user);
-			
-			ArrayList<QuanlyBean> spp = sp.getquanly(user);
-			
-			request.setAttribute("quanly", spp);
-			HttpSession session = request.getSession();
-			session.setAttribute("username", user);
-			session.setAttribute("iduser", id);
-		
-
-		
-			RequestDispatcher rd = request.getRequestDispatcher("quanly.jsp");
-			rd.forward(request, response);
 		}catch(Exception e){
 			response.getWriter().println("<html><body> Thông báo "+e.getMessage()+"</body></html>");
 		}
+		
+		
 	}
 
 	/**

@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+<%@page import="Model.Bean.ChitietBean"%>
 <%@page import="Model.Bean.QuanlyBean"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -57,12 +58,12 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
        <li class="dropdown">
-     <% if(session.getAttribute("username")!=null && session.getAttribute("iduser")!=null){  %>
+     <% if(session.getAttribute("username")!=null){  %>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%=session.getAttribute("username") %> <span class="caret"></span></a>
           <% } %>
           <ul class="dropdown-menu">
             <li><a href="logout.jsp?id=1">Logout</a></li>
-             <li><a href="QuanLy?user=<%=session.getAttribute("username") %>&iduser=<%=session.getAttribute("iduser")%>">Quản lý sản phẩm</a></li>
+             <li><a href="QuanLy?user=<%=session.getAttribute("username") %>">Quản lý sản phẩm</a></li>
           </ul>
         </li>
       </ul>
@@ -87,77 +88,86 @@
 			<ul class="t">
 			
 				<li><i class="fa fa-info-circle fa-2x" aria-hidden="true">  Thông tin</i></li>
-				<li><a href="QuanLy?user=<%=session.getAttribute("username") %>"><i class="fa fa-gift fa-2x" aria-hidden="true">  Sản phẩm</i></a></li>
+				<li><i class="fa fa-gift fa-2x" aria-hidden="true">  Sản phẩm</i></li>
 				<li><i class="fa fa-money fa-2x" aria-hidden="true">  Đấu giá</i></li>
 			</ul>
 		</div>
 		<div class="col-md-9">
 			<h3 class="text-center">
-				Quản lý sản phẩm
+				Sửa sản phẩm
 			</h3>
 			<div class="row">
 				<div class="col-md-1">
 				</div>
 				<div class="col-md-10">
-					<p><a href="themsanpham.jsp?iduser=<%=session.getAttribute("iduser")%>" class="btn btn-info">Thêm sản phẩm</a></p>
-					<table class="table">
-						<thead>
 					
+						<%
 						
 						
-							<tr>
-								<th>
-									#
-								</th>
-								<th>
-									Tên
-								</th>
-								<th>
-									Mô tả
-								</th>
-								<th>
-									Hình ảnh
-								</th>
-								<th>
-									Tag
-								</th>
-								<th>
-									
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<%
-	
-					ArrayList<QuanlyBean> sp = (ArrayList <QuanlyBean>) request.getAttribute("quanly"); 
-								int i=0;
-						for(QuanlyBean t : sp){ i++; %>
-							<tr>
-								<td>
-									<% out.print(i); %>
-								</td>
-								<td>
-									<% out.print(t.getTenSP()); %>
-								</td>
-								<td>
-									<% out.print(t.getMoTa()); %>
-								</td>
-								<td>
-									<% out.print(t.getHinhAnh()); %>
-								</td>
-								<td>
-									<% out.print(t.getGanThe()); %>
-								</td>
-								<td>
-									<a href="SuaSanPham?id=<% out.print(t.getMaSP()); %>"><i class="fa fa-pencil" style="color: green;" aria-hidden="true"></i></a>
-									<a href="XoaSanPham?id=<% out.print(t.getMaSP().trim()); %>&user=<%=session.getAttribute("username") %>"><i class="fa fa-trash" style="color: red; margin-left: 10px;" aria-hidden="true"></i></a>
+					ArrayList<ChitietBean> sp = (ArrayList <ChitietBean>) request.getAttribute("suasp"); 
 								
-								</td>
-							</tr>
-							<% } %>
+						for(ChitietBean t : sp){ %>
 						
-						</tbody>
-					</table>
+					<form class="form-horizontal" role="form" method="POST" action="UpdateSanPham?id=<% out.print(t.getMaSP().trim()); %>">
+					  <div class="form-group">
+					    <label for="inputEmail3" class="col-sm-2 control-label">Tên Sản Phẩm</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" name="tensanpham" id="inputEmail3" value="<% out.print(t.getTenSP()); %>" placeholder="Tên Sản Phẩm">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label">Mô tả</label>
+					    <div class="col-sm-10">
+					    <textarea class="form-control" rows="5" name="mota" id="comment"><% out.print(t.getMoTa()); %></textarea>
+
+					      
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label">Hình Ảnh</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" name="hinhanh" id="inputPassword3" value="<% out.print(t.getAnh()); %>" placeholder="Hình Ảnh">
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label">Tag</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" name="tag" id="inputPassword3" value="<% out.print(t.getGanThe()); %>" placeholder="Tag">
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label"></label>
+					    <div class="col-sm-10">
+					      <%if(request.getParameter("error")!=null){ %>
+					 
+					    <p class="btn-success" style="width: 27%;padding: 10px;text-align: center;">Update thành công dữ liệu!</p>
+					  <%} %>
+					    </div>
+					  </div>
+					  
+					    
+					  
+					  <div class="form-group">
+					  
+					
+					    <div class="col-sm-offset-2 col-sm-4">
+					      <button type="submit" class="btn btn-success">Đồng ý</button>
+					      	      <a href="QuanLy?user=<%=session.getAttribute("username") %>" class="btn btn-danger">Trở lại</a>
+					    </div>
+					  </div>
+					  
+					  
+					  
+					  
+					</form>
+					
+					<% } %>
+						
+						
+						
 				</div>
 				<div class="col-md-1">
 				</div>

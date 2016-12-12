@@ -79,7 +79,7 @@
 		<div class="col-md-8">
 		
 		<%
-	
+			
 					ArrayList<ChitietBean> sp = (ArrayList <ChitietBean>) request.getAttribute("chitiet"); 
 								int i=0;
 						for(ChitietBean t : sp){ i++; %>
@@ -108,30 +108,35 @@
 					<p>Bước giá: 100.000</p>
 					
 					<div class="row">
-					<div class="col-md-5">
-						<form role="form">
+					<div class="col-md-8">
+						<form role="form" method="POST" action="DauGia?iduser=<%=session.getAttribute("iduser")%>&phien=<%=t.getMaPGD().trim() %>&sp=<%=t.getMaSP().trim() %>">
 						 		<div class="input-group" style="width:100%">
 									               	<span class="input-group-btn">
 									                  	<button class="btn btn-white btn-minuse" type="button">-</button>
 									               	</span>
-									               	<input type="text" class="form-control no-padding add-color text-center height-25" maxlength="3" value="<%out.print(b.getGiaDuocDat()); %>">
+									               	<input type="text" name="daugia" class="form-control no-padding add-color text-center height-25" maxlength="3" value="<%out.print(b.getGiaDuocDat()); %>">
 									               	<span class="input-group-btn">
 									                  	<button class="btn btn-red btn-pluss" type="button">+</button>
 									               	</span>
 							 </div><!-- /input-group -->
-						</form>
+						
 					<%} %>
-					</div>
-					<div class="col-md-2">
-							<button type="button" class="btn btn-danger">
+					
+					<div class="col-md-4" style="margin-top: 10px;">
+							<button type="submit" class="btn btn-danger">
 								Đấu giá
 							</button>
 					</div>
-					<div class="col-md-4">
+					
+					<div class="col-md-4" style="margin-top: 10px;">
 					<button type="button" class="btn btn-success">
 								Hủy
 							</button>
 					</div>
+					</form>
+					</div>
+					
+					
 					</div>
 					
 					<hr style="    border-top: 2px solid #000">

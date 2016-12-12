@@ -1,8 +1,6 @@
 package Controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,20 +31,23 @@ public class DangNhap extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		request.setCharacterEncoding("utf-8");
-		String user =  request.getParameter("user");
+		String email =  request.getParameter("email");
 		String password =  request.getParameter("password");
-		boolean Redirect=false;
+		
 		try {
 			KhachhangBO s = new KhachhangBO();
-			if(s.checkkhachhang(user, password))
+			String id = s.getidkhachhang(email);
+			
+			if(s.checkkhachhang(email, password))
 			{
 				HttpSession session = request.getSession();
-				session.setAttribute("username", user);
+				
+				session.setAttribute("username", email);
+				session.setAttribute("iduser", id);
 				response.sendRedirect("SanPham");
-				Redirect=true;
+				
 			}
-			RequestDispatcher rd=request.getRequestDispatcher("dangnhap.jsp");
-			if(!Redirect) rd.forward(request, response);
+			else response.sendRedirect("dangnhap.jsp?id=1");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

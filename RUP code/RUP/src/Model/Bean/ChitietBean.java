@@ -10,8 +10,10 @@ public class ChitietBean {
 	private Date TGKetThuc;
 	private String MoTa;
 	private String Anh;
+	private String GanThe;
+	private String MaPGD;
 	public ChitietBean(String tenSP, String maSP, String tenTV, String giaDuocDat, Date tGKetThuc, String moTa,
-			String anh) {
+			String anh, String ganThe, String maPGD) {
 		super();
 		TenSP = tenSP;
 		MaSP = maSP;
@@ -20,6 +22,8 @@ public class ChitietBean {
 		TGKetThuc = tGKetThuc;
 		MoTa = moTa;
 		Anh = anh;
+		GanThe = ganThe;
+		MaPGD = maPGD;
 	}
 	public String getTenSP() {
 		return TenSP;
@@ -63,6 +67,21 @@ public class ChitietBean {
 	public void setAnh(String anh) {
 		Anh = anh;
 	}
+	public String getGanThe() {
+		return GanThe;
+	}
+	public void setGanThe(String ganThe) {
+		GanThe = ganThe;
+	}
+	public String getMaPGD() {
+		return MaPGD;
+	}
+	public void setMaPGD(String maPGD) {
+		MaPGD = maPGD;
+	}
+	
+	
+	
 	
 	
 	

@@ -18,6 +18,13 @@
     <i class="fa fa-key"></i>
     <input type="email" name="email" placeholder="Email" />
     <i class="fa fa-envelope"></i>
+    
+      <%  if(request.getParameter("id")!=null){ %>
+    	
+    	<% if(Integer.parseInt(request.getParameter("id"))==1){ %>
+    	<p class="btn btn-danger">Trùng tên đăng nhập hoặc email!</p>
+    	<% } }%>
+    	
     <button type="submit">
       <i class="spinner"></i>
       <span class="state">Đăng ký</span>

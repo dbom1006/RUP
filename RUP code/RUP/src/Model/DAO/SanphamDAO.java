@@ -20,9 +20,12 @@ public class SanphamDAO {
 	
 	
 	public static Connection cn;
-	public static void ketnoi() throws Exception{	
+	public static void ketnoi() throws Exception{
+		
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		cn = DriverManager.getConnection(CDungChung.url);
+		
+		
 	}
 	
 	
@@ -42,9 +45,11 @@ public class SanphamDAO {
 			String MoTa = r.getString("MoTa");
 			String HinhAnh = r.getString("HinhAnh");
 			int Giakhoidiem = r.getInt("GiaDatMax");
+			
 			Date d2 = r.getTimestamp("TGKetThuc");
 			DateFormat f1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			String d1 = f1.format(d2);
+
 			System.out.println(d1);
 			XemphienBean s = new XemphienBean(MaSP, TenSP, MoTa, HinhAnh, Giakhoidiem, d1);
 			ds.add(s);
@@ -55,8 +60,8 @@ public class SanphamDAO {
 	
 	public ArrayList<ChitietBean> getchitiet(String id) throws Exception{
 		ketnoi();
-		String sql= "SELECT dbo.SANPHAM.TenSP, dbo.SANPHAM.MaSP, dbo.SANPHAM.MaTV, dbo.CUOCDAUGIA.GiaDuocDat, dbo.PHIENDAUGIA.TGKetThuc, dbo.SANPHAM.MoTa, "
-				+ "dbo.SANPHAM.HinhAnh, dbo.THANHVIEN.TenTV FROM dbo.SANPHAM INNER JOIN "
+		String sql= "SELECT TOP 1 dbo.SANPHAM.TenSP, dbo.SANPHAM.MaSP, dbo.SANPHAM.MaTV, dbo.CUOCDAUGIA.GiaDuocDat, dbo.PHIENDAUGIA.TGKetThuc,dbo.PHIENDAUGIA.MaPDG, dbo.SANPHAM.MoTa, "
+				+ "dbo.SANPHAM.HinhAnh, dbo.THANHVIEN.TenTV, dbo.SANPHAM.GanThe FROM dbo.SANPHAM INNER JOIN "
 				+ "dbo.CUOCDAUGIA ON dbo.SANPHAM.MaTV = dbo.CUOCDAUGIA.MaTV "
 				+ "INNER JOIN dbo.PHIENDAUGIA "
 				+ "ON dbo.SANPHAM.MaPDG = dbo.PHIENDAUGIA.MaPDG AND "
@@ -76,8 +81,10 @@ public class SanphamDAO {
 			Date d1 = r.getTimestamp("TGKetThuc");
 			String GiaDuocDat = r.getString("GiaDuocDat");
 			String TenTV = r.getString("TenTV");
+			String GanThe = r.getString("GanThe");
+			String MaPDG = r.getString("MaPDG");
 
-			ChitietBean s = new ChitietBean(TenSP, MaSP, TenTV, GiaDuocDat, d1, MoTa, HinhAnh);
+			ChitietBean s = new ChitietBean(TenSP, MaSP, TenTV, GiaDuocDat, d1, MoTa, HinhAnh, GanThe, MaPDG);
 			ds.add(s);
 		}
 		r.close();
@@ -126,6 +133,74 @@ public class SanphamDAO {
 		}
 		r.close();
 		return ds;
+	}
+	
+	
+	public boolean updatesanpham(String id, String tensp, String mota, String anh, String tag) throws Exception{
+		ketnoi();
+		String sql = "UPDATE [dbo].[SANPHAM] SET [TenSP] = ?,[MoTa] = ? ,[HinhAnh] = ?,[GanThe] = ? WHERE [MaSP] = ?";
+		PreparedStatement cmd = cn.prepareStatement(sql);
+		cmd.setString(1, tensp);
+		cmd.setString(2, mota);
+		cmd.setString(3, anh);
+		cmd.setString(4, tag);
+		cmd.setString(5, id);
+		int rs= cmd.executeUpdate();//thực thi
+		return true;	
+	}
+
+
+	public boolean xoasanpham(String id) throws Exception {
+		// TODO Auto-generated method stub
+		ketnoi();
+		String sql = "DELETE FROM [dbo].[SANPHAM] WHERE MaSP = ?";
+		PreparedStatement cmd = cn.prepareStatement(sql);
+		cmd.setString(1, id);
+		int rs= cmd.executeUpdate();//thực thi
+		return true;	
+	}
+
+	public String getidsp() throws Exception {
+		ketnoi();
+		String sql = "SELECT TOP 1 [MaSP] FROM [RUP].[dbo].[SANPHAM] ORDER BY [MaSP] DESC";
+		PreparedStatement cmd = cn.prepareStatement(sql);
+		ResultSet r = cmd.executeQuery();
+		String id = "";
+		while(r.next()){
+			id = r.getString("MaSP");	
+		}
+		r.close();
+		return id;
+		
+	}
+
+	public boolean insertsanpham(String iduser, String tensanpham, String mota, String anh, String tag) throws Exception {
+		ketnoi();
+		//int id = Integer.parseInt(getidsp())+1;
+		String sql = "INSERT INTO [dbo].[SANPHAM] ([MaSP],[TenSP],[MoTa],[HinhAnh],[GanThe]) VALUES ('3','3','3','3','3')";
+		PreparedStatement cmd = cn.prepareStatement(sql);
+		String them = "r2";
+		cmd.setString(1, them);
+		cmd.setString(2, tensanpham);
+		cmd.setString(3, mota);
+		cmd.setString(4, anh);
+		cmd.setString(5, tag);
+		int rs= cmd.executeUpdate();//thực thi
+		return true;	
+	}
+
+
+	public boolean daugia(String iduser, String phien, String format, String daugia) throws Exception {
+		ketnoi();
+		String sql = "INSERT INTO [dbo].[CUOCDAUGIA] VALUES (?,?,?,?)";
+		PreparedStatement cmd = cn.prepareStatement(sql);
+		cmd.setString(1, iduser);
+		cmd.setString(2, phien);
+		cmd.setString(3, format);
+		cmd.setString(4, daugia);
+		int rs= cmd.executeUpdate();//thực thi
+		return true;	
+		
 	}
 	
 	

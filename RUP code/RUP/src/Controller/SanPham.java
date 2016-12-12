@@ -41,11 +41,16 @@ public class SanPham extends HttpServlet {
 
 			SanphamBO sp = new SanphamBO();
 			ArrayList<XemphienBean> spp = sp.getsanpham();
+			
+	
+			
 			request.setAttribute("sanpham", spp);
+
+		
 			RequestDispatcher rd = request.getRequestDispatcher("xemphien.jsp");
 			rd.forward(request, response);
 		}catch(Exception e){
-			response.getWriter().println("<html><body> Th√¥ng b√°o "+e.getMessage()+"</body></html>");
+			response.getWriter().println("<html><body> ThÙng b·o "+e.getMessage()+"</body></html>");
 		}
 	}
 

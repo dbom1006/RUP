@@ -1,18 +1,26 @@
 package Model.Bean;
 
 public class QuanlyBean {
+	private String MaSP;
 	private String Email;
 	private String TenSP;
 	private String MoTa;
 	private String HinhAnh;
 	private String GanThe;
-	public QuanlyBean(String email, String tenSP, String moTa, String hinhAnh, String ganThe) {
+	public QuanlyBean(String maSP, String email, String tenSP, String moTa, String hinhAnh, String ganThe) {
 		super();
+		MaSP = maSP;
 		Email = email;
 		TenSP = tenSP;
 		MoTa = moTa;
 		HinhAnh = hinhAnh;
 		GanThe = ganThe;
+	}
+	public String getMaSP() {
+		return MaSP;
+	}
+	public void setMaSP(String maSP) {
+		MaSP = maSP;
 	}
 	public String getEmail() {
 		return Email;
@@ -44,6 +52,8 @@ public class QuanlyBean {
 	public void setGanThe(String ganThe) {
 		GanThe = ganThe;
 	}
+	
+	
 	
 	
 

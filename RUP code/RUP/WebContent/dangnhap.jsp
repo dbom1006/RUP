@@ -11,7 +11,7 @@
   <div class="wrapper">
   <form class="login" action="DangNhap" method="POST">
     <p class="title">Đăng nhập</p>
-    <input type="text" name="user" placeholder="Tên đăng nhập" autofocus/>
+    <input type="email" name="email" placeholder="Email" autofocus/>
     <i class="fa fa-user"></i>
     <input type="password" name="password" placeholder="Mật khẩu.." />
     <i class="fa fa-key"></i>
@@ -22,6 +22,8 @@
     	<p class="btn btn-danger">Tên đăng nhập hoặc mật khẩu không đúng!</p>
     	<% }else { %>
     	<p class="btn btn-danger">Đăng ký thành công vui lòng đăng nhập!</p>
+    	
+    	
    		<%}
     	
     	}%>
@@ -32,7 +34,7 @@
       <span class="state">Đăng nhập</span>
     </button>
   </form>
-  <footer>Chưa có tài khoản <a href="DangKy">ĐĂNG KÝ</a></footer>
+  <footer>Chưa có tài khoản <a href="dangky.jsp">ĐĂNG KÝ</a></footer>
   </p>
 </div>
 
