@@ -52,9 +52,7 @@ public class QuanLy extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("username", user);
 			session.setAttribute("iduser", id);
-		
 
-		
 			RequestDispatcher rd = request.getRequestDispatcher("quanly.jsp");
 			rd.forward(request, response);
 		}catch(Exception e){
