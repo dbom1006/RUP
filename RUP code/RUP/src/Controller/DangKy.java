@@ -38,7 +38,6 @@ public class DangKy extends HttpServlet {
 		try {
 			KhachhangBO kh = new KhachhangBO();
 			if(kh.insert(username, email, password)){
-				response.getWriter().append("Them thanh cong");
 				response.sendRedirect("dangnhap.jsp?id=2");
 			}
 			else response.sendRedirect("dangky.jsp");	

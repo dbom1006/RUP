@@ -21,11 +21,12 @@ public class KhachhangDAO {
 	
 	public boolean checkkhachhang(String username, String password) throws Exception{
 		ketnoi();
-		String sql = "select * from THANHVIEN where Email = '"+ username +"' and Password = '"+ password +"'";
+		String sql = "select * from THANHVIEN where TenTV = '"+ username +"' and Password = '"+ password +"'";
 		PreparedStatement cmd = cn.prepareStatement(sql);
 		ResultSet r = cmd.executeQuery();
 		boolean kq = r.next();
 		r.close();
+		System.out.println(kq);
 		return kq;
 	}
 

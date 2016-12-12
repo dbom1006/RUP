@@ -20,12 +20,9 @@ public class SanphamDAO {
 	
 	
 	public static Connection cn;
-	public static void ketnoi() throws Exception{
-		
+	public static void ketnoi() throws Exception{	
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		cn = DriverManager.getConnection(CDungChung.url);
-		
-		
 	}
 	
 	
@@ -45,11 +42,9 @@ public class SanphamDAO {
 			String MoTa = r.getString("MoTa");
 			String HinhAnh = r.getString("HinhAnh");
 			int Giakhoidiem = r.getInt("GiaDatMax");
-			
 			Date d2 = r.getTimestamp("TGKetThuc");
 			DateFormat f1 = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			String d1 = f1.format(d2);
-
 			System.out.println(d1);
 			XemphienBean s = new XemphienBean(MaSP, TenSP, MoTa, HinhAnh, Giakhoidiem, d1);
 			ds.add(s);
