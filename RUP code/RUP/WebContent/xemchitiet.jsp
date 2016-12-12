@@ -37,18 +37,7 @@
         margin-top: 9px;
     margin-bottom: 10px;">Daugiaonline.com</h2></li>
        <li  style="padding-left: 30px;"><a href="SanPham" >Trang chủ</a></li>
-        <li  class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Danh mục <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+        
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -74,9 +63,9 @@
 
 <div class="container-fluid" style="background: #f2f2f2;     padding-top: 15px;">
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-1">
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-10">
 		
 		<%
 			
@@ -89,9 +78,7 @@
 				<div class="col-md-5">
 					<img style="width:100%" src="img/<%out.print(t.getAnh()); %>" />
 				</div>
-				<div class="col-md-1">
-				</div>
-				<div class="col-md-6">
+				<div class="col-md-7">
 					<h2><%out.print(t.getTenSP()); %></h2>
 					
 					<%
@@ -105,10 +92,10 @@
 					<p style="color: red; font-weight: 700; font-style: italic; font-size: 30px;"><%out.print(b.getGiaDuocDat()); %>.000 VNĐ</p>
 					<hr style="    border-top: 2px solid #000">
 					
-					<p>Bước giá: 100.000</p>
+					<p>Bước giá: 100.000 VNĐ</p>
 					
 					<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-6">
 						<form role="form" method="POST" action="DauGia?iduser=<%=session.getAttribute("iduser")%>&phien=<%=t.getMaPGD().trim() %>&sp=<%=t.getMaSP().trim() %>">
 						 		<div class="input-group" style="width:100%">
 									               	<span class="input-group-btn">
@@ -121,15 +108,14 @@
 							 </div><!-- /input-group -->
 						
 					<%} %>
-					
-					<div class="col-md-4" style="margin-top: 10px;">
+					<p class="error">
+						Lỗi nè
+					</p>
+					<div class="" style="margin-top: 10px;">
 							<button type="submit" class="btn btn-danger">
 								Đấu giá
 							</button>
-					</div>
-					
-					<div class="col-md-4" style="margin-top: 10px;">
-					<button type="button" class="btn btn-success">
+							<button type="button" class="btn btn-success">
 								Hủy
 							</button>
 					</div>
@@ -142,11 +128,11 @@
 					<hr style="    border-top: 2px solid #000">
 					
 					<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-7">
 						<table class="table table-hover">
 						  
 						  <tr>
-						  	<th>ID</th>
+						  	<th>STT</th>
 						  	<th>User</th>
 						  	<th>Số Tiền</th>
 						  </tr>
@@ -164,7 +150,7 @@
 						</table>
 					</div>
 					
-					<div class="col-md-6" style="border: 1px solid #000; padding-top: 15px;padding-bottom: 15px;">
+					<div class="col-md-5" style="border: 1px solid #000; padding-top: 15px;padding-bottom: 15px;">
 					<style>
 						.is-countdown {
 							     border: none !important;
@@ -184,7 +170,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-1">
 		</div>
 		
 		

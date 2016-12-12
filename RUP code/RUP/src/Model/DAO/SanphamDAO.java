@@ -98,7 +98,8 @@ public class SanphamDAO {
 				+ "FROM     dbo.THANHVIEN INNER JOIN "
 				+ "dbo.CUOCDAUGIA ON dbo.THANHVIEN.MaTV = dbo.CUOCDAUGIA.MaTV "
 				+ "GROUP BY dbo.CUOCDAUGIA.MaPDG, dbo.CUOCDAUGIA.GiaDuocDat, dbo.THANHVIEN.TenTV "
-				+ "HAVING (dbo.CUOCDAUGIA.MaPDG = N'"+id+"')";
+				+ "HAVING (dbo.CUOCDAUGIA.MaPDG = N'"+id+"') "
+				+ "ORDER BY dbo.CUOCDAUGIA.GiaDuocDat DESC ";
 		
 		PreparedStatement cmd = cn.prepareStatement(sql);
 		ResultSet r = cmd.executeQuery();

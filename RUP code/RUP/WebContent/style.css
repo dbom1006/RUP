@@ -17,6 +17,15 @@
   box-sizing: border-box;
 }
 
+.hide{
+	display: none;
+}
+.error{
+	margin-top: 5px;
+	color: #f44336;
+	font-weight: bold;
+}
+
 .wrapper {
   display: flex;
   align-items: center;
